@@ -1,0 +1,15 @@
+int min(const int tab[], int size)
+{
+   char i = 0;
+   char min = t[0];
+   while (i < size)
+   {
+       if tab[i] < min
+	     {
+		 min = tab[[i];
+			   }
+		     i++;
+	   
+   }
+   
+}

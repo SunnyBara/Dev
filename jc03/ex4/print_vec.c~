@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(int argc, char **argv)
+  {
+    int k = 41;
+    char j = 'q';
+    char  *a="test %i,totostv %c, fin";
+    printf(a , k, j);
+  }
+  

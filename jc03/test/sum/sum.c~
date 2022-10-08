@@ -1,0 +1,22 @@
+int sum(int i)
+{
+    int j = 1;
+    if (i  < 0)
+    {
+	i = i * -1;
+	j = 2;
+    }
+    if  (i < 9)
+    {
+	char writ[j];
+	if j = 2;
+	{
+	    writ[0] = '-';
+	}
+	writ[j-1] =  i
+	write(STDOUT_FILENO, writ, j)
+    }
+
+    
+    sum(i)
+}

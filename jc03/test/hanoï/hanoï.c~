@@ -1,0 +1,23 @@
+#include <unistd.h>
+#include <stdio.h>
+int initialisation(int tour1[], int tour2[], int tour3[], int n)
+{
+    int i = 0;
+    while (i<n)
+    {
+	tour1[i]=n-i;
+	tour2[i]=0;
+	tour3[i]=0;
+	i++;
+    }
+}
+int  testtour(int n)
+{
+    
+}
+void hanoi(int n)
+{
+    
+    return;
+}
+

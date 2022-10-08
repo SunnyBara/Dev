@@ -1,0 +1,7 @@
+#include "is_ptime"
+
+int main(int argc, char **argv)
+{
+    int n = 48;
+    return(is_prime(n))
+}

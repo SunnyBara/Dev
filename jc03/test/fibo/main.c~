@@ -1,0 +1,6 @@
+#include "fibonacci.h"
+int main(int argc, char **argv)
+{
+    n = 10;
+    return fibonacci(n));
+}

@@ -1,0 +1,12 @@
+#include <unistd.h>
+int ga_bu_zo_meu(int n)
+{
+    char syllabe[n];
+    int i = 0;
+    while (i < 5)
+    {
+	
+	write(STDOUT_FILENO,syllabe,n);
+	i++;
+    }
+}

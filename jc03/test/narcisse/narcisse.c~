@@ -1,0 +1,31 @@
+#include "my_pow"
+int narcisse(unsigned int n)
+{
+    int saven = n;
+    int taille = 1;
+    int testaille = n;
+    while (testaille > 9)  
+    {
+	testaille = testaille / 10;
+	taille ++;
+	puissance = puissance *10;
+    }
+    char y = taille;
+    char addition = 0;
+    while (taille > 0)
+    {
+	testaille = n / puissance;
+	addition  = addition + my_pow(testaille,y);
+	taille --;
+	n = n - testaille*puissance;
+	puissance = puissance / 10;
+    }
+    if (addition == saven)
+    {
+	return(1);
+    }
+    else
+    {
+	return(0);
+    }
+}
