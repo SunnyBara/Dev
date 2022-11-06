@@ -25,7 +25,7 @@ void traitement(int n)
         puissance = puissance / 10;
         j--;
     }
-    write(STDOUT_FILENO, m, 3);
+    write(STDOUT_FILENO, m, k);
     write(STDOUT_FILENO, "\n", 1);
     return;
 }
