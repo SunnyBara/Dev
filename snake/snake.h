@@ -27,12 +27,6 @@ typedef struct element
     struct element *next;
 }s_elem;
 
-typedef struct foodlist
-{
-    s_elem *lfood;
-    struct foodlist *next;
-}s_foodlist;
-
 typedef struct Snakecorps
 {
     s_elem *head;

@@ -47,8 +47,6 @@ void initialize(void)
 	start = malloc(sizeof(s_temps));
 	start->s = -1;
 	start->ns = -1;
-	spawn = malloc(sizeof(s_temps));
-	spawn->s = 0;
 	food = malloc(sizeof(s_elem));
 	creationfood();
 	corps = malloc(sizeof(s_Snakecorps));
@@ -290,33 +288,21 @@ void displayf(void)
 }
 void move(unsigned char key, int xi, int yi)
 {
-	if (key == 'q')
+	if (key == 'q' && state != "right")
 	{
-		if (state != "right")
-		{
 			state = "left";
-		}
 	}
-	else if (key == 'd')
+	else if (key == 'd' && state != "left")
 	{
-		if (state != "left")
-		{
 			state = "right";
-		}
 	}
-	else if (key == 'z')
+	else if (key == 'z' && state != "down")
 	{
-		if (state != "down")
-		{
 			state = "up";
-		}
 	}
-	else if (key == 's')
+	else if (key == 's' && state != "up")
 	{
-		if (state != "up")
-		{
 			state = "down";
-		}
 	}
 	else if (key == 'r')
 	{
@@ -341,9 +327,7 @@ void reshape(int a, int b)
 	// Get Back to the Modelview
 	glMatrixMode(GL_MODELVIEW);
 }
-void addsquare()
-{
-}
+
 int main(int argc, char **argv)
 {
 	initialize();
