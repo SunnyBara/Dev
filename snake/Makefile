@@ -1,21 +1,21 @@
 
-CC			:= gcc
-SRCS     	:= $(wildcard *.c)
-OBJ      	:= $(SRCS:%.c=%.o)
-BIN      	:= prog.out
-FLAGS		:= -W -Wall -Werror
-DEBUG		:= -g -ggdb
-GLUT		:= -I/usr/include -L/usr/lib -lGL -lGLU -lglut
+CC 		:= gcc
+SRCS 	:= $(wildcard *.c)
+OBJ		:= *.o
+BIN  	:= prog.out
+WARN 	:= -W -Wall -Werror
+FLAG 	:= -g -ggdb
+GLUT 	:= -I/usr/include -L/usr/lib -lGL -lGLU -lglut
 
 all : clean ${BIN}
 
 debug : clean ${OBJ}
-	${CC} ${FLAGS} ${DEBUG} -o ${BIN} ${OBJ} ${GLUT}
+	${CC} ${WARN} ${FLAG} -o ${BIN} ${OBJ} ${GLUT}
 
-${BIN} : ${OBJ}
-	${CC} ${FLAGS} -o $@ $^ ${GLUT}
+${BIN}: ${OBJ}
+	${CC} ${FLAG} -o $@ $^ ${GLUT}
 
-%.o : %.c
+*.o : *.c 
 	${CC} -c $^
 
 clean :

@@ -13,3 +13,4 @@ clean :
 
 use : ${BIN}
 	./prog.out
+

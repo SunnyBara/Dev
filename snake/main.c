@@ -235,6 +235,7 @@ void checkcollision(void)
 			tmp = tmp->next;
 		}
 	}
+	return;
 }
 void displayf(void)
 {
@@ -316,6 +317,7 @@ void move(unsigned char key, int xi, int yi)
 	{
 		startchronos();
 	}
+	printf("State : %s\n",state);
 	glutDisplayFunc(displayf);
 }
 
