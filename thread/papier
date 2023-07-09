@@ -1,0 +1,320 @@
+            case 8://Ajouter une Stat
+                try {
+                    int statID = Integer.parseInt(args.split(",", 2)[0]);
+                    int number = Integer.parseInt(args.split(",", 2)[1]);
+                    player.getStats().addOneStat(statID, number);
+                    SocketManager.GAME_SEND_STATS_PACKET(player);
+                    int messID = 0;
+                    switch (statID) {
+                        case Constant.STATS_ADD_INTE:
+                            messID = 14;
+                            break;
+                    }
+                    if (messID > 0)
+                        SocketManager.GAME_SEND_Im_PACKET(player, "0" + messID
+                                + ";" + number);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return true;
+                }
+                break;
+
+
+ public void boostStatFixedCount(int stat, int countVal) {
+        for (int i = 0; i < countVal; i++) {
+            int value = 0;
+            switch (stat) {
+                case 10://Force
+                    value = this.getStats().getEffect(Constant.STATS_ADD_FORC);
+                    break;
+                case 13://Chance
+                    value = this.getStats().getEffect(Constant.STATS_ADD_CHAN);
+                    break;
+                case 14://Agilité
+                    value = this.getStats().getEffect(Constant.STATS_ADD_AGIL);
+                    break;
+                case 15://Intelligence
+                    value = this.getStats().getEffect(Constant.STATS_ADD_INTE);
+                    break;
+            }
+            int cout = Constant.getReqPtsToBoostStatsByClass(this.getClasse(), stat, value);
+            if (cout <= _capital) {
+                switch (stat) {
+                    case 11://Vita
+                        if (this.getClasse() != Constant.CLASS_SACRIEUR)
+                            this.getStats().addOneStat(Constant.STATS_ADD_VITA, 1);
+                        else
+                            this.getStats().addOneStat(Constant.STATS_ADD_VITA, 2);
+                        break;
+                    case 12://Sage
+                        this.getStats().addOneStat(Constant.STATS_ADD_SAGE, 1);
+                        break;
+                    case 10://Force
+                        this.getStats().addOneStat(Constant.STATS_ADD_FORC, 1);
+                        break;
+                    case 13://Chance
+                        this.getStats().addOneStat(Constant.STATS_ADD_CHAN, 1);
+                        break;
+                    case 14://Agilité
+                        this.getStats().addOneStat(Constant.STATS_ADD_AGIL, 1);
+                        break;
+                    case 15://Intelligence
+                        this.getStats().addOneStat(Constant.STATS_ADD_INTE, 1);
+                        break;
+                    default:
+                        return;
+                }
+                _capital -= cout;
+            }
+        }
+        SocketManager.GAME_SEND_STATS_PACKET(this);
+        Database.getStatics().getPlayerData().update(this);
+    }
+        public static int getReqPtsToBoostStatsByClass(int classID, int statID,
+                                                   int val) {
+        switch (statID) {
+            case 11://Vita
+                return 1;
+            case 12://Sage
+                return 1;
+            case 10://Force
+                switch (classID) {
+                    case CLASS_SACRIEUR:
+                        return 3;
+
+                    case CLASS_FECA:
+                    case CLASS_ENIRIPSA:
+                    case CLASS_OSAMODAS:
+                    case CLASS_XELOR:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 150)
+                            return 3;
+                        if (val < 250)
+                            return 4;
+                        return 5;
+
+                    case CLASS_SRAM:
+                    case CLASS_IOP:
+                    case CLASS_ECAFLIP:
+                        if (val < 10000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        if (val < 300)
+                            return 3;
+                        if (val < 400)
+                            return 4;
+                        return 5;
+
+                    case CLASS_PANDAWA:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        return 3;
+
+                    case CLASS_SADIDA:
+                        if (val < 5000)
+                            return 1;
+                        if (val < 250)
+                            return 2;
+                        if (val < 300)
+                            return 3;
+                        if (val < 400)
+                            return 4;
+                        return 5;
+
+                    case CLASS_CRA:
+                    case CLASS_ENUTROF:
+                        if (val < 5000)
+                            return 1;
+                        if (val < 150)
+                            return 2;
+                        if (val < 250)
+                            return 3;
+                        if (val < 350)
+                            return 4;
+                        return 5;
+                }
+                break;
+            case 13://Chance
+                switch (classID) {
+                    case CLASS_FECA:
+                    case CLASS_XELOR:
+                    case CLASS_SRAM:
+                    case CLASS_IOP:
+                    case CLASS_ECAFLIP:
+                    case CLASS_ENIRIPSA:
+                    case CLASS_CRA:
+                        if (val < 20000)
+                            return 1;
+                        if (val < 40)
+                            return 2;
+                        if (val < 60)
+                            return 3;
+                        if (val < 80)
+                            return 4;
+                        return 5;
+
+                    case CLASS_SACRIEUR:
+                        return 3;
+
+                    case CLASS_SADIDA:
+                    case CLASS_OSAMODAS:
+                        if (val < 100000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        if (val < 300)
+                            return 3;
+                        if (val < 400)
+                            return 4;
+                        return 5;
+
+                    case CLASS_PANDAWA:
+                        if (val < 500000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        return 3;
+
+                    case CLASS_ENUTROF:
+                        if (val < 100000)
+                            return 1;
+                        if (val < 150)
+                            return 2;
+                        if (val < 230)
+                            return 3;
+                        if (val < 330)
+                            return 4;
+                        return 5;
+                }
+                break;
+            case 14://Agilité
+                switch (classID) {
+                    case CLASS_FECA:
+                    case CLASS_XELOR:
+                    case CLASS_SADIDA:
+                    case CLASS_ENIRIPSA:
+                    case CLASS_ENUTROF:
+                    case CLASS_IOP:
+                    case CLASS_OSAMODAS:
+                        if (val < 200000)
+                            return 1;
+                        if (val < 40)
+                            return 2;
+                        if (val < 60)
+                            return 3;
+                        if (val < 80)
+                            return 4;
+                        return 5;
+
+                    case CLASS_SACRIEUR:
+                        return 3;
+
+                    case CLASS_SRAM:
+                        if (val < 100000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        if (val < 300)
+                            return 3;
+                        if (val < 400)
+                            return 4;
+                        return 5;
+
+                    case CLASS_PANDAWA:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        return 3;
+
+                    case CLASS_ECAFLIP:
+                    case CLASS_CRA:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 100)
+                            return 2;
+                        if (val < 150)
+                            return 3;
+                        if (val < 200)
+                            return 4;
+                        return 5;
+                }
+                break;
+            case 15://Intelligence
+                switch (classID) {
+                    case CLASS_XELOR:
+                    case CLASS_FECA:
+                    case CLASS_SADIDA:
+                    case CLASS_ENIRIPSA:
+                    case CLASS_OSAMODAS:
+                        if (val < 10000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        if (val < 300)
+                            return 3;
+                        if (val < 400)
+                            return 4;
+                        return 5;
+
+                    case CLASS_SACRIEUR:
+                        return 3;
+
+                    case CLASS_SRAM:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 150)
+                            return 3;
+                        if (val < 250)
+                            return 4;
+                        return 5;
+
+                    case CLASS_ENUTROF:
+                        if (val < 20000)
+                            return 1;
+                        if (val < 60)
+                            return 2;
+                        if (val < 100)
+                            return 3;
+                        if (val < 140)
+                            return 4;
+                        return 5;
+
+                    case CLASS_PANDAWA:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 200)
+                            return 2;
+                        return 3;
+
+                    case CLASS_IOP:
+                    case CLASS_ECAFLIP:
+                        if (val < 20000)
+                            return 1;
+                        if (val < 40)
+                            return 2;
+                        if (val < 60)
+                            return 3;
+                        if (val < 80)
+                            return 4;
+                        return 5;
+
+                    case CLASS_CRA:
+                        if (val < 50000)
+                            return 1;
+                        if (val < 150)
+                            return 2;
+                        if (val < 250)
+                            return 3;
+                        if (val < 350)
+                            return 4;
+                        return 5;
+                }
+                break;
+        }
+        return 5;
+    }
