@@ -1,0 +1,11 @@
+#include "min.h"
+
+int main(int argc, char **argv)
+{
+   const int tab[3];
+   int size = 3;
+   tab[0]=4;
+   tab[1]=7;
+   tab[2]=1;
+   return(min(tab,size));
+}

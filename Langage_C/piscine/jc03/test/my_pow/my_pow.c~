@@ -1,0 +1,12 @@
+int multiplication (int a)
+{
+    a = a*a
+}
+int my_pow(int x, int y)
+{
+    if(y==0)
+    {
+	return(x);
+    }
+    x =  my_pow(x,y-1)*my_pow(x,y-1);
+}

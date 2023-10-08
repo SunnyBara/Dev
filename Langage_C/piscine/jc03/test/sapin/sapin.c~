@@ -1,0 +1,52 @@
+#include <unistd.h>
+int base (int espace)
+{
+    int i=0;
+    int j=0;
+    while (i < 2)
+    {
+	while ( j < espace)
+	{
+	    write(STDOUT_FILENO," ",1);
+	    j++;
+	}
+	write(STDOUT_FILENO,"*",1);
+	write(STDOUT_FILENO,"\n",1);
+	i++;
+	j=0;
+    }
+}
+int sapin(int n)
+{
+    char etoile[1];
+    etoile[0] =  '*';
+    int i = 0;
+    int j = 0;
+    int espace[2];
+    espace[0] = ' ';
+    espace[1] = n-1;
+    if (n < 3)
+    {
+	return(1);
+    }
+    else
+    {
+	while (i < n)
+	{
+	    while ( j < espace[1])
+	    {
+		write(STDOUT_FILENO,espace,1);
+		j++;
+	    }
+	    
+	    write(STDOUT_FILENO,etoile,1);
+	    write(STDOUT_FILENO,"\n",1);
+	    i++;
+	    j=0;
+	    espace[1] = espace[1] -1;
+	}
+	base(n-1);
+    }
+	return(0);
+    }
+    

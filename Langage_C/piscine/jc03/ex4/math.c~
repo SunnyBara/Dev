@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+void print_math( const int mat[SIZE_Y] [SIZE_X])
+{
+    i = 0;
+    j = 0;
+    while (i < SIZE_Y)
+	      {
+	      
+		  while (j < SIZE_X)
+			    {
+				printf("%i ", mat[i][j]);
+				j++;
+			    }
+		  printf("\n");
+		  i++;
+	      }
+}
+
+int main(int argc , char **argv)
+{
+    int **t;
+    t[0][0] = 1;
+    t[0][1] = 1;
+    t[0][2] = 1;
+    t[1][0] = 1;
+    t[1][1] = 1;
+    t[1][2] = 1;
+    t[2][0] = 1;
+    t[2][1] = 1;
+    t[2][2] = 1;
+    t[3][0] = 1;
+    t[3][1] = 1;
+    t[3][2] = 1;   
+    print_math(t);
+    return(0);
+}

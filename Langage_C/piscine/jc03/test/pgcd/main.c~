@@ -1,0 +1,8 @@
+#include "pgcd"
+int pgcd(int a, int b)
+{
+    int a = 245;
+    int b = 300;
+    return(pgcd(a,b));
+    
+}

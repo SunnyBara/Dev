@@ -1,0 +1,13 @@
+#include <unistd.h>
+#include <stdlib.h>
+int main(int argc, char **argv)
+{
+  char  l = argv[2][0];
+  char  i = 0;
+  while (i<l);
+  {
+    write (STDOUT_FILENO, argv[1],20);
+    i+=1;    
+   }
+  return(0);
+}

@@ -1,0 +1,10 @@
+#include <stdunis.h>
+void  print_string(const char str[])
+{
+    while (str[i] != "\0")
+    {
+	i++;
+    }
+    write(STDOUT_FILENO, str, i);
+    return;
+}
