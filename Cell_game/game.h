@@ -1,1 +1,0 @@
-void fillcell(int X, int Y, s_cell *listcell);
