@@ -1,5 +1,0 @@
-int  main(int argc, char **argv)
-{
-  write (stdout_fileno, "hello_world_!",10000)
-
-}

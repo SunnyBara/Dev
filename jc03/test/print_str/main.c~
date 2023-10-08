@@ -1,7 +1,0 @@
-#include "print_str"
-int main(int  argc, char **argv)
-{
-    str[]="chaine de caractere";
-    print_str(str);
-    return(0);
-}

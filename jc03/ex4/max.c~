@@ -1,3 +1,0 @@
-int  max( const int vec[], size)
-{
-  

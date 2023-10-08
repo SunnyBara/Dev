@@ -1,8 +1,0 @@
-#include "sum.h"
-int main(int argc, char **argv)
-{
-
-    if (i  < 0)
-	i = i * -1;
-    sum(i);
-}

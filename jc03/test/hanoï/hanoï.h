@@ -1,1 +1,0 @@
-void hanoi(int n);
