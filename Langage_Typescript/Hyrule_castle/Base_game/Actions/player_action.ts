@@ -1,7 +1,7 @@
 import { Attack, Damages_output, heal } from "./Damages_management";
 import { Name_from_list, Search_in_list } from "../Search/search_functions";
 import { Units } from "../data/Unit";
-import { Display } from "../game/display";
+import { Display } from "../Display/display";
 import { hero_list } from "../initialisation/initialisation_hero";
 import { rl } from "../data/importdata";
 import { Tower } from "../data/Tower";

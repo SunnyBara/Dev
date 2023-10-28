@@ -2,7 +2,7 @@
 CC 		:= npx tsc
 SRCS 	:= $(wildcard *.ts)
 BIN  	:= *.js
-USE 	:= Hyrule_castle.js 
+USE 	:= index.js 
 
 
 all : clean ${BIN}
@@ -19,3 +19,6 @@ clean :
 
 use : clean ${BIN}
 	node ${USE}
+
+index : clean 
+	${CC} index.ts && node ${USE}
