@@ -6,33 +6,56 @@ export interface Tower_rules {
 }
 export interface Combat_option {
   set: boolean;
-  more_Statistics: boolean;
-  inventory: boolean;
-  magic_skills: boolean;
-  team_combat: boolean;
+  Combat_mods : Mods[];
 }
 export interface Characteristics_options {
   set: boolean;
-  character_creation: boolean;
-  basic_characteristics_II: boolean;
-  level_and_experience: boolean;
+  Characteristics_mods : Mods[];
+}
+
+export interface Mods {
+  mod_name : string,
+  set : boolean,
 }
 
 export function Initiate_tower_rules() {
+  let more_Statistics : Mods = {
+    set : false,
+    mod_name : 'more_Statistics'
+  }
+  let inventory : Mods = {
+    set : false,
+    mod_name : 'inventory'
+  } 
+  let magic_skills : Mods = {
+    set : false,
+    mod_name : 'magic_skills'
+  } 
+  let team_combat : Mods = {
+    set : false,
+    mod_name : 'team_combat'
+  } 
+  let character_creation : Mods = {
+    set : false,
+    mod_name : 'character_creation'
+  } 
+  let basic_characteristics_II : Mods = {
+    set : false,
+    mod_name : 'basic_characteristics_II'
+  } 
+  let level_and_experience : Mods = {
+    set : false,
+    mod_name : 'level_and_experience'
+  }  
   let better_combat: Combat_option = {
     set: false,
-    more_Statistics: false,
-    inventory: false,
-    magic_skills: false,
-    team_combat: false,
+    Combat_mods : [team_combat,more_Statistics,inventory,magic_skills],
   };
   let characteristics_options: Characteristics_options = {
     set: false,
-    character_creation: false,
-    basic_characteristics_II: false,
-    level_and_experience: false,
-  };
-
+    Characteristics_mods: [character_creation,basic_characteristics_II,level_and_experience]
+  }
+  
   let tower_rules: Tower_rules = {
     size: 0,
     difficultie: "",

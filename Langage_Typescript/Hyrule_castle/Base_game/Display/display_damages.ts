@@ -1,5 +1,6 @@
 import { Damages } from "../data/Damages";
 import { Units } from "../data/Unit";
+import { terminal } from "../data/importdata";
 
 export function Add_Damages_combat_log(
   target: Units,

@@ -1,6 +1,7 @@
 const fs = require("fs");
 var ansi = require("ansi");
 export var rl = require("readline-sync");
+export var terminal = require('terminal-kit');
 
 const heros_content = fs.readFileSync("./data/heros.json");
 const ennemies_content = fs.readFileSync("./data/ennemies.json");
@@ -15,3 +16,5 @@ export const boss_list = JSON.parse(boss_content);
 export const classes_list = JSON.parse(classes_content);
 export const races_list = JSON.parse(races_content);
 export const spell_list = JSON.parse(spell_content);
+
+

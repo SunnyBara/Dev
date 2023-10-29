@@ -1,6 +1,6 @@
 import { rl } from "../data/importdata";
-import Start from "./start";
-import { Tower_rules } from "./tower_rules";
+import { Menu } from "./start";
+import { Mods, Tower_rules } from "./tower_rules";
 
 export function Mod_manager(tower_rules: Tower_rules) {
   const tab: string[] = ["Combat Option", "Characteristics Options"];
@@ -16,13 +16,14 @@ export function Mod_manager(tower_rules: Tower_rules) {
       Set_up_mods(tower_rules, tab[answers]);
       break;
     case -1:
-      Start();
+      Menu(tower_rules);
       return;
   }
   return;
 }
 
 function Set_up_mods(tower_rules: Tower_rules, mod_name: string) {
+  console.clear();
   switch (mod_name.toLowerCase()) {
     case "combat option":
       console.log(
@@ -49,7 +50,7 @@ export function Manage_mod(tower_rules: Tower_rules, mod_name: string) {
     `Choose`,
   ];
   const answers = rl.keyInSelect(tab, `What do you want to do ?`, {
-    cancel: "Back to the menu",
+    cancel: "Back to the Mod manager",
   });
   switch (answers) {
     case 0:
@@ -62,9 +63,9 @@ export function Manage_mod(tower_rules: Tower_rules, mod_name: string) {
       Choose_your_mods(mod_name, tower_rules);
       break;
     case -1:
-      Start();
-      return;
+	  break;
   }
+  Mod_manager(tower_rules);
   return;
 }
 
@@ -73,92 +74,99 @@ export function Switch_mods(
   change: boolean,
   tower_rules: Tower_rules
 ) {
-  switch (mod_name) {
+	console.clear();
+	console.log(`j'arrive avec ${mod_name} && ${change}`)
+  switch (mod_name.toLowerCase()) {
     case "characteristics options":
-      tower_rules.basic_characteristics.character_creation = change;
-      tower_rules.basic_characteristics.level_and_experience = change;
-      tower_rules.basic_characteristics.basic_characteristics_II = change;
+	  tower_rules.basic_characteristics.set = change;
+	  tower_rules.basic_characteristics.Characteristics_mods.forEach((mod) => {
+	    mod.set = change;
+	    return;
+	  })
       break;
 
     case "combat option":
-      tower_rules.better_combat_options.inventory = change;
-      tower_rules.better_combat_options.magic_skills = change;
-      tower_rules.better_combat_options.team_combat = change;
+	  tower_rules.better_combat_options.set = change;
+	  tower_rules.better_combat_options.Combat_mods.forEach((mod) => {
+	    mod.set = change;
+	    return;
+	  })
       break;
   }
   return;
 }
 
 export function Choose_your_mods(mod_name: string, tower_rules: Tower_rules) {
-  switch (mod_name) {
-    case "characteristics options":
-      const mods = rl.keyInSelect(
-        [
-          "character_creation",
-          "level_and_experience",
-          "basic_characteristics_II",
-        ],
-        `What do you want to do ?`,
-        {
-          cancel: "Back to the menu",
+  let stop : boolean = true;
+  console.clear();
+  while(stop) {
+ 	switch (mod_name.toLowerCase()) {
+      case "characteristics options":
+        const Chara_tab : string[] = [];
+	    tower_rules.basic_characteristics.Characteristics_mods.forEach((mods)=> {Chara_tab.push(mods.mod_name)});
+	    const Char_mods = rl.keyInSelect(Chara_tab,`What do you want to do ?`,{cancel: "Back to the Mod manager",});
+        switch (Char_mods) {
+          default:
+		    Switch_single_mods(Find_mod_by_name(tower_rules,Chara_tab[Char_mods]));
+            break;
+		  case -1:
+			stop = false;
+		    Mod_manager(tower_rules);
+		    return;
+  	    }
+        break;
+      case "combat option":
+	    const Combat_tab : string[] = [];
+	    tower_rules.better_combat_options.Combat_mods.forEach((mods)=> {Combat_tab.push(mods.mod_name)});
+	    const Combat_mods = rl.keyInSelect(Combat_tab,`What do you want to do ?`,{cancel: "Back to the Mod manager",});
+	    switch (Combat_mods) {
+	      default:
+	     	Switch_single_mods(Find_mod_by_name(tower_rules,Combat_tab[Combat_mods]));
+		    break;
+	    case -1:
+		  stop = false;
+		  Mod_manager(tower_rules);
+		  return;
         }
-      );
-      switch (mods) {
-        case 0:
-          tower_rules.basic_characteristics.character_creation =
-            !tower_rules.basic_characteristics.character_creation;
-          console.log(
-            `character_creation`,
-            tower_rules.basic_characteristics.character_creation
-              ? `is active`
-              : "is disable"
-          );
-          break;
-        case 1:
-          tower_rules.basic_characteristics.level_and_experience =
-            !tower_rules.basic_characteristics.level_and_experience;
-          console.log(
-            `level_and_experience`,
-            tower_rules.basic_characteristics.level_and_experience
-              ? `is active`
-              : "is disable"
-          );
-          break;
-        case 2:
-          tower_rules.basic_characteristics.basic_characteristics_II =
-            !tower_rules.basic_characteristics.basic_characteristics_II;
-          console.log(
-            `basic_characteristics_II`,
-            tower_rules.basic_characteristics.basic_characteristics_II
-              ? `is active`
-              : "is disable"
-          );
-          break;
-        case -1:
-          Start();
-          return;
-      }
-      break;
-
-    case "combat option":
-      const answers = rl.keyInSelect(tab, `What do you want to do ?`, {
-        cancel: "Back to the menu",
-      });
-      switch (answers) {
-        case 0:
-          Switch_mods(mod_name, false, tower_rules);
-          break;
-        case 1:
-          Switch_mods(mod_name, true, tower_rules);
-          break;
-        case 2:
-          Choose_your_mods(mod_name, tower_rules);
-          break;
-        case -1:
-          Start();
-          return;
-      }
-      break;
+        break;
+    }
   }
   return;
+}
+
+export function Switch_single_mods(mod : Mods | null){
+  if(mod !== null){
+	console.clear();
+	mod.set = !mod.set;
+	console.log(
+	  `${mod.mod_name}`,
+	  mod.set
+	  ? `is active`
+	  : "is disable"
+	);
+  }
+  return;
+}
+
+export function Find_mod_by_name(tower_rules: Tower_rules,mod_name : string)
+{
+	
+  let mod_found : Mods | null = null ;
+  let find : Boolean = tower_rules.basic_characteristics.Characteristics_mods.every((mod) => {
+	if(mod.mod_name === mod_name) {
+	  mod_found = mod;
+	  return false;
+	}
+	return true;
+  })
+  if(find) {
+    tower_rules.better_combat_options.Combat_mods.every((mod)=> {
+      if(mod.mod_name === mod_name) {
+		mod_found = mod;
+		return false;
+	  }
+	  return true;
+	})	
+  }
+  return (mod_found);
 }

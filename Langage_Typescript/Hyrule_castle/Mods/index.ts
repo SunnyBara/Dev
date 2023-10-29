@@ -1,59 +1,172 @@
-// import { Initiate_tower_rules, Tower_rules } from "./Start/tower_rules";
-// import { rl } from "./data/importdata";
+import { rl } from "./data/importdata";
+import { Menu } from "./Start/start";
+import { Initiate_tower_rules, Mods, Tower_rules } from "./Start/tower_rules";
 
+export function Mod_manager(tower_rules: Tower_rules) {
+  const tab: string[] = ["Combat Option", "Characteristics Options"];
+  const answers = rl.keyInSelect(
+    tab,
+    `Choose your Mods\nAll mods are disable by default`,
+    {
+      cancel: "Back to the menu",
+    }
+  );
+  switch (answers) {
+    default:
+      Set_up_mods(tower_rules, tab[answers]);
+      break;
+    case -1:
+      Menu(tower_rules);
+      return;
+  }
+  return;
+}
 
+function Set_up_mods(tower_rules: Tower_rules, mod_name: string) {
+  console.clear();
+  switch (mod_name.toLowerCase()) {
+    case "combat option":
+      console.log(
+        tower_rules.better_combat_options.set
+          ? "One or more options is currently active"
+          : "Combats Options are currently disabled"
+      );
+      break;
+    case "characteristics options":
+      console.log(
+        tower_rules.basic_characteristics.set
+          ? "One or more options is currently active"
+          : "Characteristics options are currently disabled"
+      );
+      break;
+  }
+  Manage_mod(tower_rules, mod_name);
+}
 
-//  function Local_Start() {
-//   console.clear();
-//   let tower_rules: Tower_rules = Initiate_tower_rules();
-//   const tab: string[] = ["New game", "Optionnal Mods"];
-//   const answers = rl.keyInSelect(tab, `Welcome !`, {
-//     cancel: "Quit",
-//   });
-//   switch (answers) {
-//     case 0:
-//         Local_Set_up_game_rules(tower_rules);
-//     //   Choose_size_of_tower(tower_rules);
-//     //   Initialisation(tower_rules);
-//       break;
-//     case 0:
-//     //   Mod_manager(tower_rules);
-//       break;
+export function Manage_mod(tower_rules: Tower_rules, mod_name: string) {
+  const tab: string[] = [
+    `Disable all ${mod_name}`,
+    `Active all ${mod_name}`,
+    `Choose`,
+  ];
+  const answers = rl.keyInSelect(tab, `What do you want to do ?`, {
+    cancel: "Back to the Mod manager",
+  });
+  switch (answers) {
+    case 0:
+      Switch_mods(mod_name, false, tower_rules);
+      break;
+    case 1:
+      Switch_mods(mod_name, true, tower_rules);
+      break;
+    case 2:
+      Choose_your_mods(mod_name, tower_rules);
+      break;
+    case -1:
+	  break;
+  }
+  Mod_manager(tower_rules);
+  return;
+}
 
-//     case -1:
-//       return;
-//   }
-//   return;
-// }
+export function Switch_mods(
+  mod_name: string,
+  change: boolean,
+  tower_rules: Tower_rules
+) {
+	console.clear();
+	console.log(`j'arrive avec ${mod_name} && ${change}`)
+  switch (mod_name.toLowerCase()) {
+    case "characteristics options":
+	  tower_rules.basic_characteristics.set = change;
+	  tower_rules.basic_characteristics.Characteristics_mods.forEach((mod) => {
+	    mod.set = change;
+	    return;
+	  })
+      break;
 
-// function Local_Set_up_game_rules(tower_rules: Tower_rules) {
-//   const tab: string[] = ["Normal", "Difficult", "Insane"];
-//   const answers = rl.keyInSelect(tab, `Choose your difficultie`, {
-//     cancel: "Back to the menu",
-//   });
-//   switch (answers) {
-//     default:
-//       tower_rules.difficultie = tab[answers];
-//       break;
-//     case -1:
-//       return;
-//   }
-//   return;
-// }
-// function Local_Choose_size_of_tower(tower_rules: Tower_rules) {
-//   const tab: string[] = ["10", "20", "50", "100"];
-//   const answers = rl.keyInSelect(tab, `Choose your difficultie`, {
-//     cancel: "Back to the menu",
-//   });
-//   switch (answers) {
-//     default:
-//       tower_rules.size = parseInt(tab[answers]);
-//       break;
-//     case -1:
-//       return;
-//   }
-//   return;
-// }
+    case "combat option":
+	  tower_rules.better_combat_options.set = change;
+	  tower_rules.better_combat_options.Combat_mods.forEach((mod) => {
+	    mod.set = change;
+	    return;
+	  })
+      break;
+  }
+  return;
+}
 
-// Local_Start()
-window.open();
+export function Choose_your_mods(mod_name: string, tower_rules: Tower_rules) {
+  let stop : boolean = true;
+  console.clear();
+  while(stop) {
+ 	switch (mod_name.toLowerCase()) {
+      case "characteristics options":
+        const Chara_tab : string[] = [];
+	    tower_rules.basic_characteristics.Characteristics_mods.forEach((mods)=> {Chara_tab.push(mods.mod_name)});
+	    const Char_mods = rl.keyInSelect(Chara_tab,`What do you want to do ?`,{cancel: "Back to the Mod manager",});
+        switch (Char_mods) {
+          default:
+		    Switch_single_mods(Find_mod_by_name(tower_rules,Chara_tab[Char_mods]));
+            break;
+		  case -1:
+			stop = false;
+		    Mod_manager(tower_rules);
+		    return;
+  	    }
+        break;
+      case "combat option":
+	    const Combat_tab : string[] = [];
+	    tower_rules.better_combat_options.Combat_mods.forEach((mods)=> {Combat_tab.push(mods.mod_name)});
+	    const Combat_mods = rl.keyInSelect(Combat_tab,`What do you want to do ?`,{cancel: "Back to the Mod manager",});
+	    switch (Combat_mods) {
+	      default:
+	     	Switch_single_mods(Find_mod_by_name(tower_rules,Combat_tab[Combat_mods]));
+		    break;
+	    case -1:
+		  stop = false;
+		  Mod_manager(tower_rules);
+		  return;
+        }
+        break;
+    }
+  }
+  return;
+}
+
+export function Switch_single_mods(mod : Mods | null){
+  if(mod !== null){
+	console.clear();
+	mod.set = !mod.set;
+	console.log(
+	  `${mod.mod_name}`,
+	  mod.set
+	  ? `is active`
+	  : "is disable"
+	);
+  }
+  return;
+}
+
+export function Find_mod_by_name(tower_rules: Tower_rules,mod_name : string)
+{
+	
+  let mod_found : Mods | null = null ;
+  let find : Boolean = tower_rules.basic_characteristics.Characteristics_mods.every((mod) => {
+	if(mod.mod_name === mod_name) {
+	  mod_found = mod;
+	  return false;
+	}
+	return true;
+  })
+  if(find) {
+    tower_rules.better_combat_options.Combat_mods.every((mod)=> {
+      if(mod.mod_name === mod_name) {
+		mod_found = mod;
+		return false;
+	  }
+	  return true;
+	})	
+  }
+  return (mod_found);
+}
