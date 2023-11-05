@@ -1,8 +1,11 @@
+import { Mods, Tower_rules } from "../data/Tower";
 import { rl } from "../data/importdata";
+import { Towertemplate } from "../initialisation/init_tower_template";
 import { Menu } from "./start";
-import { Mods, Tower_rules } from "./tower_rules";
+
 
 export function Mod_manager(tower_rules: Tower_rules) {
+  console.clear();
   const tab: string[] = ["Combat Option", "Characteristics Options"];
   const answers = rl.keyInSelect(
     tab,
@@ -55,9 +58,11 @@ export function Manage_mod(tower_rules: Tower_rules, mod_name: string) {
   switch (answers) {
     case 0:
       Switch_mods(mod_name, false, tower_rules);
+      Mod_manager(tower_rules);
       break;
     case 1:
       Switch_mods(mod_name, true, tower_rules);
+      Mod_manager(tower_rules);
       break;
     case 2:
       Choose_your_mods(mod_name, tower_rules);
@@ -65,7 +70,6 @@ export function Manage_mod(tower_rules: Tower_rules, mod_name: string) {
     case -1:
 	  break;
   }
-  Mod_manager(tower_rules);
   return;
 }
 
@@ -75,7 +79,6 @@ export function Switch_mods(
   tower_rules: Tower_rules
 ) {
 	console.clear();
-	console.log(`j'arrive avec ${mod_name} && ${change}`)
   switch (mod_name.toLowerCase()) {
     case "characteristics options":
 	  tower_rules.basic_characteristics.set = change;
@@ -125,6 +128,7 @@ export function Choose_your_mods(mod_name: string, tower_rules: Tower_rules) {
 		    break;
 	    case -1:
 		  stop = false;
+      console.clear()
 		  Mod_manager(tower_rules);
 		  return;
         }
@@ -169,4 +173,18 @@ export function Find_mod_by_name(tower_rules: Tower_rules,mod_name : string)
 	})	
   }
   return (mod_found);
+}
+
+export function findIfModIsActive(mod_name : string){
+
+  for(const mod of Towertemplate.tower_rules.better_combat_options.Combat_mods){
+    if (mod.mod_name === mod_name){
+      return(mod.set)
+    }
+  }
+  for(const mod of Towertemplate.tower_rules.basic_characteristics.Characteristics_mods){
+    if (mod.mod_name === mod_name){
+      return(mod.set)
+    }
+  }
 }

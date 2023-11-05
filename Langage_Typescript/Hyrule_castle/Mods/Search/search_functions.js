@@ -32,12 +32,10 @@ function Search_in_list(ennemie_name, list) {
 exports.Search_in_list = Search_in_list;
 function Search_class_advantage(list_advantage, target_id) {
     var incr = 0;
-    console.log("entre class ");
     while (list_advantage[incr] !== undefined &&
         list_advantage[incr] !== target_id) {
         incr += 1;
     }
-    console.log("sort ");
     if (list_advantage[incr] !== undefined) {
         return true;
     }
@@ -46,13 +44,10 @@ function Search_class_advantage(list_advantage, target_id) {
 exports.Search_class_advantage = Search_class_advantage;
 function Search_race_advantage(list_advantage, target_id) {
     var incr = 0;
-    console.log("entre ");
-    console.log("".concat(list_advantage, ",et ").concat(target_id));
     while (list_advantage[incr] !== undefined &&
         list_advantage[incr] !== target_id) {
         incr += 1;
     }
-    console.log("sort ");
     if (list_advantage[incr] !== undefined) {
         return true;
     }

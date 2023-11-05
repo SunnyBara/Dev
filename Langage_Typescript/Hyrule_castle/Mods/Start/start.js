@@ -23,7 +23,7 @@ function Menu(tower_rules) {
         case 0:
             Set_up_game_rules(tower_rules);
             break;
-        case 0:
+        case 1:
             (0, Set_mods_1.Mod_manager)(tower_rules);
             break;
         case -1:
@@ -68,7 +68,7 @@ function Choose_size_of_tower(tower_rules) {
 }
 function Ready_to_start(tower_rules) {
     console.clear();
-    var tab = ["Start Game", "Change Mods"];
+    var tab = ["Start Game"];
     var answers = importdata_1.rl.keyInSelect(tab, "Ready to start ?", {
         cancel: "Back to the menu",
     });
@@ -80,6 +80,5 @@ function Ready_to_start(tower_rules) {
             Menu(tower_rules);
             return;
     }
-    console.log(tower_rules);
     return;
 }

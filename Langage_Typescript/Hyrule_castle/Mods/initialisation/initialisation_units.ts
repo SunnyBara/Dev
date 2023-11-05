@@ -1,5 +1,5 @@
 import { Search_in_list } from "../Search/search_functions";
-import { Base_stats, Units, State, Bar } from "../data/Unit";
+import { Base_stats, Units, State, Bar, Fighting_status } from "../data/Unit";
 import { boss_list, heros_list, trash_mobs_list } from "../data/importdata";
 
 export function Typeunit(name: string) {
@@ -19,6 +19,12 @@ export function Create_unit(unit_Bs: Base_stats): Units {
     current: unit_Bs.hp,
     max: unit_Bs.hp,
   };
+  let fightstats : Fighting_status = {
+    fear : false,
+    def_stance : false,
+    weakened : false
+  }
+  
   let unitstate: State = {
     health: unit_health,
   };
@@ -43,6 +49,7 @@ export function Create_unit(unit_Bs: Base_stats): Units {
     base_stats: unit_Bs,
     state: unitstate,
     characteristics: unit_characteristrics,
+    fighting_status : fightstats
   };
   return newunit;
 }

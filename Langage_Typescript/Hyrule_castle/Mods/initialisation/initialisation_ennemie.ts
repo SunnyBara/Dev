@@ -1,6 +1,6 @@
 import { Search_in_ennemie_list } from "../Search/search_functions";
-import { Rarity_list } from "../data/Tower";
-import { Units } from "../data/Unit";
+import { Rarity_list, Tower_rules } from "../data/Tower";
+import { Base_stats, Units } from "../data/Unit";
 import { Create_unit } from "./initialisation_units";
 
 export function Init_ennemie_list(
@@ -18,10 +18,34 @@ export function Init_ennemie_list(
   return ennemie_at_this_floor;
 }
 
-export function Create_ennemie_fighter(ennemie_name: string): Units {
+export function Create_ennemie_fighter(ennemie_name: string , tower_rules : Tower_rules): Units {
   let ennemiestats = Search_in_ennemie_list(ennemie_name);
+  ennemiestats = AdaptDifficulty(ennemiestats,tower_rules.difficultie);
   let newennemie: Units = Create_unit(ennemiestats);
   return newennemie;
+}
+
+export function AdaptDifficulty(stats : Base_stats , difficultie : string ) : Base_stats {
+  let statsmultiplier = 1;
+  switch(difficultie) {
+    case 'Difficult':
+      statsmultiplier = 1,5;
+      break;
+    case 'Insane':
+      statsmultiplier = 2;
+    break;
+    default : 
+    break;
+  }
+  stats.def *= statsmultiplier;
+  stats.hp *= statsmultiplier;
+  stats.int *= statsmultiplier;
+  stats.mp *= statsmultiplier;
+  stats.res *= statsmultiplier;
+  stats.spd *= statsmultiplier;
+  stats.str *= statsmultiplier;
+  stats.luck *= statsmultiplier;
+  return(stats);
 }
 
 export function Add_fighter(ennemie: Units, fight_list: Units[]) {

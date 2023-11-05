@@ -15,7 +15,7 @@ function Initiate_tower_rules() {
         mod_name: 'magic_skills'
     };
     var team_combat = {
-        set: false,
+        set: true,
         mod_name: 'team_combat'
     };
     var character_creation = {
@@ -39,7 +39,7 @@ function Initiate_tower_rules() {
         Characteristics_mods: [character_creation, basic_characteristics_II, level_and_experience]
     };
     var tower_rules = {
-        size: 0,
+        size: 100,
         difficultie: "",
         better_combat_options: better_combat,
         basic_characteristics: characteristics_options,

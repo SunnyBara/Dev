@@ -14,7 +14,7 @@ function End(keep_playing) {
         (0, Ascii_Art_1.Display_gameover)();
     }
     if (importdata_1.rl.keyInYN("Do you want another game ?\n")) {
-        (0, Hyrule_castle_1.Hyrule_castle)();
+        (0, Hyrule_castle_1.default)();
     }
     else {
         console.log("Okay , Good Bye !");

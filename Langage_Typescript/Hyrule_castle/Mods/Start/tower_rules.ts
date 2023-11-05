@@ -1,22 +1,5 @@
-export interface Tower_rules {
-  size: number;
-  difficultie: string;
-  better_combat_options: Combat_option;
-  basic_characteristics: Characteristics_options;
-}
-export interface Combat_option {
-  set: boolean;
-  Combat_mods : Mods[];
-}
-export interface Characteristics_options {
-  set: boolean;
-  Characteristics_mods : Mods[];
-}
+import { Characteristics_options, Combat_option, Mods, Tower_rules } from "../data/Tower"
 
-export interface Mods {
-  mod_name : string,
-  set : boolean,
-}
 
 export function Initiate_tower_rules() {
   let more_Statistics : Mods = {
@@ -32,7 +15,7 @@ export function Initiate_tower_rules() {
     mod_name : 'magic_skills'
   } 
   let team_combat : Mods = {
-    set : false,
+    set : true,
     mod_name : 'team_combat'
   } 
   let character_creation : Mods = {
@@ -57,7 +40,7 @@ export function Initiate_tower_rules() {
   }
   
   let tower_rules: Tower_rules = {
-    size: 0,
+    size: 100,
     difficultie: "",
     better_combat_options: better_combat,
     basic_characteristics: characteristics_options,

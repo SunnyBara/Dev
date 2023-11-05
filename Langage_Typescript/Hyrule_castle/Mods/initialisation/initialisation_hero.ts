@@ -1,9 +1,9 @@
 import { Search_in_Hero_list } from "../Search/search_functions";
-import { Tower_rules } from "../Start/tower_rules";
-import { Rarity_list } from "../data/Tower";
+import { findIfModIsActive } from "../Start/Set_mods";
+import { Rarity_list, Tower_rules } from "../data/Tower";
 import { Units } from "../data/Unit";
 import { heros_list } from "../data/importdata";
-import { Random_hero, Random_rarirty } from "../data/random";
+import { Random_hero } from "../data/random";
 import { Set_up_rarity_units } from "./Initialisation_rarity";
 import { Create_unit } from "./initialisation_units";
 
@@ -20,18 +20,24 @@ export function Add_hero(hero: Units) {
   return;
 }
 
-export function Init_hero(tower_rules: Tower_rules) {
+export function Init_hero() {
   let hero: number[] = [];
-  let avaible_hero_list: number[] = [1, 2, 3, 4, 5];
-  hero.push(Random_hero(avaible_hero_list));
-  if (tower_rules.better_combat_options.team_combat) {
+  let teamsize = 1;
+  if (findIfModIsActive('team_combat')) {
+    teamsize = 4;
+  }
+  let avaible_hero_list: number[] = [1,2,3,4,5];
+  while(teamsize > 0)
+  {
+    hero.push(Random_hero(avaible_hero_list));
+    teamsize -=1;
   }
   let set_up_hero_rarity: Rarity_list[] = Set_up_rarity_units(heros_list);
-  while (hero.length > 0) {
-    Create_hero(
-      set_up_hero_rarity[hero[0]].list[
-        Math.floor(Math.random() * set_up_hero_rarity[hero[0]].list.length)
-      ]
-    );
-  }
-}
+    for(const rarity of hero) {
+      for(const hero of set_up_hero_rarity) {
+        if(rarity === hero.rarity ){
+          Add_hero(Create_hero(hero.list[0]));
+        }
+     }
+    }  
+ }

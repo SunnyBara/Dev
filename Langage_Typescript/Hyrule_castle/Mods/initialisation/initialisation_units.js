@@ -23,6 +23,11 @@ function Create_unit(unit_Bs) {
         current: unit_Bs.hp,
         max: unit_Bs.hp,
     };
+    var fightstats = {
+        fear: false,
+        def_stance: false,
+        weakened: false
+    };
     var unitstate = {
         health: unit_health,
     };
@@ -47,6 +52,7 @@ function Create_unit(unit_Bs) {
         base_stats: unit_Bs,
         state: unitstate,
         characteristics: unit_characteristrics,
+        fighting_status: fightstats
     };
     return newunit;
 }

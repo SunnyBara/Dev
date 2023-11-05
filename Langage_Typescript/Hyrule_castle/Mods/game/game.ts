@@ -20,6 +20,5 @@ export default function Game(tower: Tower): boolean {
     }
     tower.current_floor += 1;
   }
-
   return keep_playing;
 }

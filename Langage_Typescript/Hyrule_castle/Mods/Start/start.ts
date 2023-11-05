@@ -1,9 +1,10 @@
 import { rl } from "../data/importdata";
 import Initialisation from "../initialisation/initialisation";
 import { Mod_manager } from "./Set_mods";
-import { Initiate_tower_rules, Tower_rules } from "./tower_rules";
-import Game from '../game/game';
-import {End} from '../End/End'
+import { Initiate_tower_rules } from "./tower_rules";
+ import Game from '../game/game';
+ import {End} from '../End/End'
+import { Tower_rules } from "../data/Tower";
 
 
 export  function Start() {
@@ -22,7 +23,7 @@ export  function Menu(tower_rules : Tower_rules) {
 		case 0:
 			Set_up_game_rules(tower_rules);
 			break;
-		case 0:
+		case 1:
 			Mod_manager(tower_rules);
 			break;
 
@@ -68,19 +69,17 @@ function Choose_size_of_tower(tower_rules: Tower_rules) {
 }
 function Ready_to_start(tower_rules: Tower_rules) {
 	console.clear()
-	const tab: string[] = ["Start Game", "Change Mods"];
+	const tab: string[] = ["Start Game"];
 	const answers = rl.keyInSelect(tab, `Ready to start ?`, {
 		cancel: "Back to the menu",
 	});
 	switch (answers) {
 		default:
-			End(Game(Initialisation(tower_rules)));
+		End(Game(Initialisation(tower_rules)));
 			break;
 		case -1:
 			Menu(tower_rules);
 			return;
 	}
-	console.log(tower_rules);
-
 	return;
 }

@@ -4,6 +4,8 @@ import { Units } from "../data/Unit";
 import Init_damages from "../initialisation/initialisation_damages";
 import { combat_log } from "../initialisation/initialisation_tower";
 import { Is_it_dead } from "./Death_management";
+import { Damage_modif } from "./damage_modifiers";
+
 
 export function Damages_output(
   unit: Units,
@@ -30,9 +32,10 @@ export function Is_over_heal(unit: Units) {
   return unit;
 }
 
-export function Attack(unit: Units): Damages {
+export function Attack(unit: Units, target : Units): Damages {
   let damages: Damages = Init_damages();
   damages.damages = unit.characteristics.str;
+  damages.damages = Damage_modif(unit,target,damages,'physical');
   return damages;
 }
 

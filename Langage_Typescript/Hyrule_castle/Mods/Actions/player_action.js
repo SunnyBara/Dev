@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerAction = void 0;
 var Damages_management_1 = require("./Damages_management");
 var search_functions_1 = require("../Search/search_functions");
-var display_1 = require("../game/display");
+var display_1 = require("../Display/display");
 var initialisation_hero_1 = require("../initialisation/initialisation_hero");
 var importdata_1 = require("../data/importdata");
 function PlayerAction(unit, fight_list, tower) {
@@ -35,7 +35,7 @@ function Letsfight(unit, fight_list, tower) {
         case 0:
             var target_to_attack = Choosetarget(unit, fight_list, fight_list, tower);
             if (target_to_attack !== undefined) {
-                (0, Damages_management_1.Damages_output)(unit, target_to_attack, (0, Damages_management_1.Attack)(unit), fight_list);
+                (0, Damages_management_1.Damages_output)(unit, target_to_attack, (0, Damages_management_1.Attack)(unit, target_to_attack), fight_list);
             }
             break;
         case 1:

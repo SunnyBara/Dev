@@ -1,5 +1,5 @@
 import { Display_gameover } from "../Display/Ascii_Art";
-import { Hyrule_castle } from "../Hyrule_castle";
+import Hyrule_castle  from "../Hyrule_castle";
 import { rl } from "../data/importdata";
 
 export function End(keep_playing: boolean) {

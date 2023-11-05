@@ -39,14 +39,12 @@ export function Search_class_advantage(
   target_id: number
 ): boolean {
   let incr: number = 0;
-  console.log("entre class ");
   while (
     list_advantage[incr] !== undefined &&
     list_advantage[incr] !== target_id
   ) {
     incr += 1;
   }
-  console.log("sort ");
   if (list_advantage[incr] !== undefined) {
     return true;
   }
@@ -58,15 +56,12 @@ export function Search_race_advantage(
   target_id: number
 ): boolean {
   let incr: number = 0;
-  console.log("entre ");
-  console.log(`${list_advantage},et ${target_id}`);
   while (
     list_advantage[incr] !== undefined &&
     list_advantage[incr] !== target_id
   ) {
     incr += 1;
   }
-  console.log("sort ");
   if (list_advantage[incr] !== undefined) {
     return true;
   }
