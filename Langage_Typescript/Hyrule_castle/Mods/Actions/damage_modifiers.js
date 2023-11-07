@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Damage_modif = void 0;
+exports.Attack = exports.Damage_modif = void 0;
 var search_functions_1 = require("../Search/search_functions");
+var initialisation_damages_1 = require("../initialisation/initialisation_damages");
 function Damage_modif(unit, target, damage, type) {
     damage.damages = Is_crit(damage, unit);
     damage.damages = Is_magic_or_physical(target, damage, type);
@@ -72,3 +73,10 @@ function Is_advantage_or_weak(target, damage, unit) {
     }
     return damage.damages;
 }
+function Attack(unit, target) {
+    var damages = (0, initialisation_damages_1.default)();
+    damages.damages = unit.characteristics.str;
+    damages.damages = Damage_modif(unit, target, damages, "physical");
+    return damages;
+}
+exports.Attack = Attack;

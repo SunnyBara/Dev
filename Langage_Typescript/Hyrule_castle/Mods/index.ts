@@ -1,4 +1,5 @@
-import { Attack } from "./Actions/Damages_management";
+
+import { Attack } from "./Actions/damage_modifiers";
 import {Create_hero } from "./initialisation/initialisation_hero";
 
 

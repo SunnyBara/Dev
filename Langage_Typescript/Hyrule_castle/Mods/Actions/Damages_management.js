@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.heal = exports.Attack = exports.Is_over_heal = exports.Damages_output = void 0;
+exports.heal = exports.Is_over_heal = exports.Damages_output = void 0;
 var display_damages_1 = require("../Display/display_damages");
 var initialisation_damages_1 = require("../initialisation/initialisation_damages");
 var initialisation_tower_1 = require("../initialisation/initialisation_tower");
 var Death_management_1 = require("./Death_management");
-var damage_modifiers_1 = require("./damage_modifiers");
 function Damages_output(unit, target, damages, target_list) {
     var saveold_hp = unit.state.health.current;
     target.state.health.current -= damages.damages;
@@ -25,13 +24,6 @@ function Is_over_heal(unit) {
     return unit;
 }
 exports.Is_over_heal = Is_over_heal;
-function Attack(unit, target) {
-    var damages = (0, initialisation_damages_1.default)();
-    damages.damages = unit.characteristics.str;
-    damages.damages = (0, damage_modifiers_1.Damage_modif)(unit, target, damages, 'physical');
-    return damages;
-}
-exports.Attack = Attack;
 // export function spell_damage(unit: Units, target: Units, spell_name: string) {
 //     let damage: number  =
 // }

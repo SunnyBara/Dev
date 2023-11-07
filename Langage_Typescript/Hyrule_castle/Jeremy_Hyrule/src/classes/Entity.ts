@@ -1,7 +1,6 @@
 import { Bosses, EntityI, Monster, Player } from "../interface";
 import { blue, green, magenta, red } from "ansi-colors";
 import * as fs from "fs";
-import { terminal } from "terminal-kit";
 
 /**
  * This class handle the entitites.

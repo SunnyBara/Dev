@@ -32,12 +32,7 @@ export function Is_over_heal(unit: Units) {
   return unit;
 }
 
-export function Attack(unit: Units, target : Units): Damages {
-  let damages: Damages = Init_damages();
-  damages.damages = unit.characteristics.str;
-  damages.damages = Damage_modif(unit,target,damages,'physical');
-  return damages;
-}
+
 
 // export function spell_damage(unit: Units, target: Units, spell_name: string) {
 //     let damage: number  =
