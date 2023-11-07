@@ -4,7 +4,6 @@ import { Units } from "../data/Unit";
 import Init_damages from "../initialisation/initialisation_damages";
 import { combat_log } from "../initialisation/initialisation_tower";
 import { Is_it_dead } from "./Death_management";
-import { Damage_modif } from "./damage_modifiers";
 
 
 export function Damages_output(
@@ -14,7 +13,7 @@ export function Damages_output(
   target_list: Units[]
 ) {
   const saveold_hp = unit.state.health.current;
-  target.state.health.current -= damages.damages;
+  target.state.health.current -= Math.floor(damages.damages);
   Is_over_heal(target);
   if (damages.damages < 0) {
     damages.damages = saveold_hp - target.state.health.current;

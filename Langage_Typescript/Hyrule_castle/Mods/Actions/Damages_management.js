@@ -7,7 +7,7 @@ var initialisation_tower_1 = require("../initialisation/initialisation_tower");
 var Death_management_1 = require("./Death_management");
 function Damages_output(unit, target, damages, target_list) {
     var saveold_hp = unit.state.health.current;
-    target.state.health.current -= damages.damages;
+    target.state.health.current -= Math.floor(damages.damages);
     Is_over_heal(target);
     if (damages.damages < 0) {
         damages.damages = saveold_hp - target.state.health.current;

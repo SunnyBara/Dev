@@ -15,21 +15,21 @@ export function Add_Damages_combat_log(
   if (damage.damages > 0)
     combat_log.push(
       damage.Crit
-        ? `${unit.name} CRITS ${target.name} FOR  ${damage.damages} DAMAGES ! `
-        : `${unit.name} deals ${damage.damages} to ${target.name}`
+        ? `${unit.name} CRITS ${target.name} FOR  ${Math.floor(damage.damages)} DAMAGES ! `
+        : `${unit.name} deals ${Math.floor(damage.damages)} to ${target.name}`
     );
   else {
     if (target === unit) {
       combat_log.push(
         damage.Crit
-          ? `${unit.name} HEALS CRIT HIMSELF FOR ${-damage.damages} !`
-          : `${unit.name} heals himself ${-damage.damages}Hp`
+          ? `${unit.name} HEALS CRIT HIMSELF FOR ${-Math.floor(damage.damages)} !`
+          : `${unit.name} heals himself ${-Math.floor(damage.damages)}Hp`
       );
     } else {
       combat_log.push(
         damage.Crit
-          ? `${unit.name} HEALS CRIT ${target.name} FOR  ${-damage.damages} !`
-          : `${unit.name} heals ${target.name}  ${-damage.damages}Hp`
+          ? `${unit.name} HEALS CRIT ${target.name} FOR  ${-Math.floor(damage.damages)} !`
+          : `${unit.name} heals ${target.name}  ${-Math.floor(damage.damages)}Hp`
       );
     }
   }

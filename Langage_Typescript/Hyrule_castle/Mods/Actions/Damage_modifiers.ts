@@ -19,12 +19,11 @@ import {
     damage.damages = Is_it_fear(unit, damage);
     damage.damages = Is_it_weak(target, damage);
     damage.damages = Is_it_on_def(target, damage);
-    return damage.damages;
+    return Math.floor(damage.damages*1);
   }
   
   function Is_crit(damage: Damages, unit: Units) {
     if (unit.characteristics.luck + 5 >= Math.floor(Math.random() * 100)) {
-      console.log(" critique");
       damage.damages *= 2;
       damage.Crit = true;
     }
@@ -43,7 +42,6 @@ import {
       damage.damages =
         damage.damages - (damage.damages * target.characteristics.def) / 100;
     }
-    console.log(damage.damages);
     return damage.damages;
   }
   
@@ -103,5 +101,6 @@ import {
     let damages: Damages = Init_damages();
     damages.damages = unit.characteristics.str;
     damages.damages = Damage_modif(unit,target,damages,"physical");
+    damages.damages = Math.floor(damages.damages*1);
     return damages;
   }

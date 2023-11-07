@@ -10,18 +10,18 @@ function Add_Damages_combat_log(target, unit, damage, combat_log) {
     }
     if (damage.damages > 0)
         combat_log.push(damage.Crit
-            ? "".concat(unit.name, " CRITS ").concat(target.name, " FOR  ").concat(damage.damages, " DAMAGES ! ")
-            : "".concat(unit.name, " deals ").concat(damage.damages, " to ").concat(target.name));
+            ? "".concat(unit.name, " CRITS ").concat(target.name, " FOR  ").concat(Math.floor(damage.damages), " DAMAGES ! ")
+            : "".concat(unit.name, " deals ").concat(Math.floor(damage.damages), " to ").concat(target.name));
     else {
         if (target === unit) {
             combat_log.push(damage.Crit
-                ? "".concat(unit.name, " HEALS CRIT HIMSELF FOR ").concat(-damage.damages, " !")
-                : "".concat(unit.name, " heals himself ").concat(-damage.damages, "Hp"));
+                ? "".concat(unit.name, " HEALS CRIT HIMSELF FOR ").concat(-Math.floor(damage.damages), " !")
+                : "".concat(unit.name, " heals himself ").concat(-Math.floor(damage.damages), "Hp"));
         }
         else {
             combat_log.push(damage.Crit
-                ? "".concat(unit.name, " HEALS CRIT ").concat(target.name, " FOR  ").concat(-damage.damages, " !")
-                : "".concat(unit.name, " heals ").concat(target.name, "  ").concat(-damage.damages, "Hp"));
+                ? "".concat(unit.name, " HEALS CRIT ").concat(target.name, " FOR  ").concat(-Math.floor(damage.damages), " !")
+                : "".concat(unit.name, " heals ").concat(target.name, "  ").concat(-Math.floor(damage.damages), "Hp"));
         }
     }
     return;
