@@ -40,6 +40,7 @@ export interface Level {
 }
 
 export interface Base_stats {
+  statsmultiplier?: number;
   id: number;
   name: string;
   hp: number;

@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Init_hero = exports.Add_hero = exports.Create_hero = exports.hero_list = void 0;
+exports.inventory = exports.Init_hero = exports.Add_hero = exports.Create_hero = exports.hero_list = void 0;
 var search_functions_1 = require("../Search/search_functions");
 var Set_mods_1 = require("../Start/Set_mods");
+var Iventory_1 = require("../data/Iventory");
 var importdata_1 = require("../data/importdata");
 var random_1 = require("../data/random");
 var Initialisation_rarity_1 = require("./Initialisation_rarity");
@@ -42,3 +43,4 @@ function Init_hero() {
     }
 }
 exports.Init_hero = Init_hero;
+exports.inventory = new Iventory_1.Inventory();

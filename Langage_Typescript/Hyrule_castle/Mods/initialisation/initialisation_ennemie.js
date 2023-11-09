@@ -15,7 +15,8 @@ function Init_ennemie_list(nbr_ennemie, ennemies) {
 exports.Init_ennemie_list = Init_ennemie_list;
 function Create_ennemie_fighter(ennemie_name, tower_rules) {
     var ennemiestats = (0, search_functions_1.Search_in_ennemie_list)(ennemie_name);
-    ennemiestats = AdaptDifficulty(ennemiestats, tower_rules.difficultie);
+    ennemiestats.statsmultiplier = AdaptDifficulty(ennemiestats, tower_rules.difficultie);
+    console.log(ennemiestats);
     var newennemie = (0, initialisation_units_1.Create_unit)(ennemiestats);
     return newennemie;
 }
@@ -32,15 +33,7 @@ function AdaptDifficulty(stats, difficultie) {
         default:
             break;
     }
-    stats.def *= statsmultiplier;
-    stats.hp *= statsmultiplier;
-    stats.int *= statsmultiplier;
-    stats.mp *= statsmultiplier;
-    stats.res *= statsmultiplier;
-    stats.spd *= statsmultiplier;
-    stats.str *= statsmultiplier;
-    stats.luck *= statsmultiplier;
-    return (stats);
+    return (statsmultiplier);
 }
 exports.AdaptDifficulty = AdaptDifficulty;
 function Add_fighter(ennemie, fight_list) {

@@ -1,5 +1,6 @@
 import { Search_in_Hero_list } from "../Search/search_functions";
 import { findIfModIsActive } from "../Start/Set_mods";
+import { Inventory } from "../data/Iventory";
 import { Rarity_list, Tower_rules } from "../data/Tower";
 import { Units } from "../data/Unit";
 import { heros_list } from "../data/importdata";
@@ -41,3 +42,5 @@ export function Init_hero() {
      }
     }  
  }
+ 
+ export let inventory = new Inventory();

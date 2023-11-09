@@ -53,7 +53,7 @@ export default function Displayfighters(
 }
 
 export function Display_Floor(current_floor: number) {
-  console.log(`CURRENT FLOOR ${current_floor + 1}\n`);
+  console.log(`CURRENT FLOOR ${current_floor}\n`);
 
   return;
 }

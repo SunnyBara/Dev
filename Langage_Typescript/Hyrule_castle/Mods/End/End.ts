@@ -1,10 +1,10 @@
-import { Display_gameover } from "../Display/Ascii_Art";
+import { Display_big_zelda, Display_gameover } from "../Display/Ascii_Art";
 import Hyrule_castle  from "../Hyrule_castle";
 import { rl } from "../data/importdata";
 
 export function End(keep_playing: boolean) {
   console.clear();
-  Display_gameover();
+  Display_big_zelda();
   if (keep_playing === true) {
     console.log("CONGRATULATION YOU WON");
   } else if (keep_playing === false) {

@@ -15,9 +15,13 @@ export function Typeunit(name: string) {
 }
 
 export function Create_unit(unit_Bs: Base_stats): Units {
+  if(unit_Bs.statsmultiplier === undefined)
+  {
+    unit_Bs.statsmultiplier = 1;
+  }
   let unit_health: Bar = {
-    current: unit_Bs.hp,
-    max: unit_Bs.hp,
+    current: unit_Bs.hp*unit_Bs.statsmultiplier,
+    max: unit_Bs.hp*unit_Bs.statsmultiplier,
   };
   let fightstats : Fighting_status = {
     fear : false,
@@ -30,18 +34,19 @@ export function Create_unit(unit_Bs: Base_stats): Units {
   };
   if (unit_Bs.mp !== 0) {
     let unit_mana: Bar = {
-      current: unit_Bs.mp,
-      max: unit_Bs.mp,
+      current: unit_Bs.mp*unit_Bs.statsmultiplier,
+      max: unit_Bs.mp*unit_Bs.statsmultiplier,
     };
     unitstate.mana = unit_mana;
   }
+
   let unit_characteristrics = {
-    str: unit_Bs.str,
-    int: unit_Bs.int,
-    def: unit_Bs.def,
-    res: unit_Bs.res,
-    spd: unit_Bs.spd,
-    luck: unit_Bs.luck,
+    str: unit_Bs.str*unit_Bs.statsmultiplier,
+    int: unit_Bs.int*unit_Bs.statsmultiplier,
+    def: unit_Bs.def*unit_Bs.statsmultiplier,
+    res: unit_Bs.res*unit_Bs.statsmultiplier,
+    spd: unit_Bs.spd*unit_Bs.statsmultiplier,
+    luck: unit_Bs.luck*unit_Bs.statsmultiplier,
   };
   let newunit: Units = {
     name: unit_Bs.name,

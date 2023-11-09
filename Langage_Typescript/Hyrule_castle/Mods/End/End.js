@@ -6,7 +6,7 @@ var Hyrule_castle_1 = require("../Hyrule_castle");
 var importdata_1 = require("../data/importdata");
 function End(keep_playing) {
     console.clear();
-    (0, Ascii_Art_1.Display_gameover)();
+    (0, Ascii_Art_1.Display_big_zelda)();
     if (keep_playing === true) {
         console.log("CONGRATULATION YOU WON");
     }

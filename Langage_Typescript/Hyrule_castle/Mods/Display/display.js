@@ -40,7 +40,7 @@ function Displayfighters(fight_list, hero_list) {
 }
 exports.default = Displayfighters;
 function Display_Floor(current_floor) {
-    console.log("CURRENT FLOOR ".concat(current_floor + 1, "\n"));
+    console.log("CURRENT FLOOR ".concat(current_floor, "\n"));
     return;
 }
 exports.Display_Floor = Display_Floor;

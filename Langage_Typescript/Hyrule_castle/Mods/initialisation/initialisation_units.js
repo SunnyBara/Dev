@@ -19,9 +19,12 @@ function Typeunit(name) {
 }
 exports.Typeunit = Typeunit;
 function Create_unit(unit_Bs) {
+    if (unit_Bs.statsmultiplier === undefined) {
+        unit_Bs.statsmultiplier = 1;
+    }
     var unit_health = {
-        current: unit_Bs.hp,
-        max: unit_Bs.hp,
+        current: unit_Bs.hp * unit_Bs.statsmultiplier,
+        max: unit_Bs.hp * unit_Bs.statsmultiplier,
     };
     var fightstats = {
         fear: false,
@@ -33,18 +36,18 @@ function Create_unit(unit_Bs) {
     };
     if (unit_Bs.mp !== 0) {
         var unit_mana = {
-            current: unit_Bs.mp,
-            max: unit_Bs.mp,
+            current: unit_Bs.mp * unit_Bs.statsmultiplier,
+            max: unit_Bs.mp * unit_Bs.statsmultiplier,
         };
         unitstate.mana = unit_mana;
     }
     var unit_characteristrics = {
-        str: unit_Bs.str,
-        int: unit_Bs.int,
-        def: unit_Bs.def,
-        res: unit_Bs.res,
-        spd: unit_Bs.spd,
-        luck: unit_Bs.luck,
+        str: unit_Bs.str * unit_Bs.statsmultiplier,
+        int: unit_Bs.int * unit_Bs.statsmultiplier,
+        def: unit_Bs.def * unit_Bs.statsmultiplier,
+        res: unit_Bs.res * unit_Bs.statsmultiplier,
+        spd: unit_Bs.spd * unit_Bs.statsmultiplier,
+        luck: unit_Bs.luck * unit_Bs.statsmultiplier,
     };
     var newunit = {
         name: unit_Bs.name,
