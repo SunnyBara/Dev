@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Fireball = exports.Restore = exports.heal = exports.Is_over_heal = exports.Damages_output = void 0;
+exports.item_effect = exports.Fireball = exports.Restore = exports.heal = exports.Is_over_heal = exports.Damages_output = void 0;
 var display_damages_1 = require("../Display/display_damages");
+var End_of_fight_1 = require("../game/End_of_fight");
 var initialisation_damages_1 = require("../initialisation/initialisation_damages");
 var initialisation_tower_1 = require("../initialisation/initialisation_tower");
 var Damage_modifiers_1 = require("./Damage_modifiers");
@@ -55,3 +56,50 @@ function Fireball(unit, target) {
     return damages;
 }
 exports.Fireball = Fireball;
+function item_effect(item, target) {
+    var heal = 0;
+    var mana = 0;
+    var exp = 0;
+    switch (item.name) {
+        case "Low-level Potion":
+            heal = Math.floor(target.state.health.max * 0.1);
+            mana = 10;
+            exp = 0;
+            break;
+        case "Potion":
+            heal = Math.floor(target.state.health.max * 0.25);
+            mana = 20;
+            exp = 0;
+            break;
+        case "Good Potion":
+            heal = Math.floor(target.state.health.max * 0.35);
+            mana = 25;
+            exp = 0;
+            break;
+        case "High-level Potion":
+            heal = Math.floor(target.state.health.max * 0.5);
+            mana = 50;
+            exp = 0;
+            break;
+        case "Holy Potion":
+            heal = Math.floor(target.state.health.max);
+            if (target.state.mana)
+                mana = target.state.mana.max;
+            exp = 500;
+            break;
+    }
+    target.state.health.current += heal;
+    Is_over_heal(target);
+    if (target.state.mana) {
+        target.state.mana.current += mana;
+        Is_over_mana(target);
+    }
+    if (target.state.level) {
+        target.state.level.exp.current += exp;
+        while (target.state.level.exp.current >= target.state.level.exp.max) {
+            (0, End_of_fight_1.Is_level_up)(target);
+        }
+    }
+    return;
+}
+exports.item_effect = item_effect;

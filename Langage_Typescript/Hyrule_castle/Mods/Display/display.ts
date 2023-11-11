@@ -40,13 +40,16 @@ export default function Displayfighters(
     const HealthBar = Calcul_health_bar(
       Math.floor((hero.state.health.current / hero.state.health.max) * 100)
     );
-    console.log(`${hero.name}`);
+    console.log(`${hero.name}`, hero.state.level ? ` lv ${hero.state.level.current_level}`: ``);
     console.log("\u001b[37;46;42m" + HealthBar + "\u001b[37;46;40m");
 
     console.log(
       `Hp : ${hero.state.health.current}/${hero.state.health.max}`,
       hero.state.mana
         ? `\nMana : ${hero.state.mana.current}/${hero.state.mana.max}`
+        : ""
+      ,hero.state.level
+        ? `\nExp : ${hero.state.level.exp.current}/${hero.state.level.exp.max}`
         : ""
     );
   }

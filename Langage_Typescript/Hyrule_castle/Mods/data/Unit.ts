@@ -31,7 +31,7 @@ export interface Bar {
 export interface State {
   health: Bar;
   mana?: Bar;
-  level?: Bar;
+  level?: Level;
 }
 
 export interface Level {

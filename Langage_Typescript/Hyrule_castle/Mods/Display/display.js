@@ -31,10 +31,12 @@ function Displayfighters(fight_list, hero_list) {
     for (var _a = 0, hero_list_1 = hero_list; _a < hero_list_1.length; _a++) {
         var hero = hero_list_1[_a];
         var HealthBar = Calcul_health_bar(Math.floor((hero.state.health.current / hero.state.health.max) * 100));
-        console.log("".concat(hero.name));
+        console.log("".concat(hero.name), hero.state.level ? " lv ".concat(hero.state.level.current_level) : "");
         console.log("\u001b[37;46;42m" + HealthBar + "\u001b[37;46;40m");
         console.log("Hp : ".concat(hero.state.health.current, "/").concat(hero.state.health.max), hero.state.mana
             ? "\nMana : ".concat(hero.state.mana.current, "/").concat(hero.state.mana.max)
+            : "", hero.state.level
+            ? "\nExp : ".concat(hero.state.level.exp.current, "/").concat(hero.state.level.exp.max)
             : "");
     }
 }

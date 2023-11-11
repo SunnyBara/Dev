@@ -6,9 +6,10 @@ import { Checkteamalive } from "./Check_fighters";
 import { Tower } from "../data/Tower";
 import { Damages } from "../data/Damages";
 import { combat_log } from "../initialisation/initialisation_tower";
-import { Reset_combat_log } from "../Display/display_damages";
-import { End_of_fight } from "./End_of_fight";
+import { Display_Combat_log, Reset_combat_log } from "../Display/display_damages";
+import { End_of_fight } from "../game/End_of_fight";
 import { Kill_unit } from "./Death_management";
+import { Display } from "../Display/display";
 
 export function Action(
   initiative: Units[],

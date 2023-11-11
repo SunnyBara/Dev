@@ -7,8 +7,11 @@ import { Tower } from "../data/Tower";
 import { Units } from "../data/Unit";
 import { combat_log } from "../initialisation/initialisation_tower";
 
-export default function Begin_of_turn(fight_list: Units[], tower: Tower) {
+export default function Begin_of_turn(fight_list: Units[], tower: Tower,cpt: number) {
   Display(fight_list, tower.current_floor);
-  Reset_combat_log(combat_log);
+  if(cpt !== 0) {
+    Reset_combat_log(combat_log);
+  }
+ 
   return;
 }

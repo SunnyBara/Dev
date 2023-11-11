@@ -1,12 +1,13 @@
-import { Damages_output, Fireball, Restore, heal } from "./Damages_management";
+import { Damages_output, Fireball, Restore, heal, item_effect } from "./Damages_management";
 import { Name_from_list, Search_in_list } from "../Search/search_functions";
 import { Units } from "../data/Unit";
 import { Display } from "../Display/display";
-import { hero_list } from "../initialisation/initialisation_hero";
+import { hero_list, inventory } from "../initialisation/initialisation_hero";
 import { rl } from "../data/importdata";
 import { Tower } from "../data/Tower";
 import { Attack } from "./damage_modifiers";
 import { combat_log } from "../initialisation/initialisation_tower";
+import { Item } from "../data/Iventory";
 
 export function PlayerAction(unit: Units, fight_list: Units[], tower: Tower) {
   console.clear();
@@ -30,6 +31,9 @@ export function PlayerAction(unit: Units, fight_list: Units[], tower: Tower) {
 
 function Letsfight(unit: Units, fight_list: Units[], tower: Tower) {
   const fight_tab = ["Attack", "Skills"];
+  if(inventory.items.length > 0) {
+    fight_tab.push("Inventory");
+  }
   console.clear();
   Display(fight_list, tower.current_floor + 1);
   const answers = rl.keyInSelect(fight_tab, `Choose your action`, {
@@ -51,6 +55,10 @@ function Letsfight(unit: Units, fight_list: Units[], tower: Tower) {
     case 1:
       chooseskill(unit, fight_list, tower);
       break;
+    case 2:
+      if(inventory.items.length > 0) {
+        check_inventory(unit,fight_list,tower); 
+      } 
     case -1:
       PlayerAction(unit, fight_list, tower);
       break;
@@ -143,4 +151,56 @@ export function chooseskill(unit: Units, fight_list: Units[], tower: Tower) {
             }
             break;
  }
+}
+
+export function check_inventory(unit: Units, fight_list: Units[], tower: Tower) {
+  console.clear();
+  Display(fight_list, tower.current_floor + 1);
+  const inventory_list : string[]= [];
+  inventory.items.forEach((item) => {
+   inventory_list.push(item.name);
+  });
+  const answers = rl.keyInSelect(inventory_list, `Choose your item`, {
+    cancel: "Choose another attack",
+  });
+  switch (answers) {
+    case -1:
+      Letsfight(unit, fight_list, tower);
+      return undefined;
+
+    default :
+      check_item(inventory_list[answers],unit, fight_list, tower);
+    break;
+ }
+}
+
+export function check_item(item_name : string ,unit: Units, fight_list: Units[], tower: Tower) {
+  console.clear();
+  Display(fight_list, tower.current_floor + 1);
+  let choosen_item : Item | null = inventory.find_item(item_name)
+  if(choosen_item){
+    const answers = rl.keyInSelect(["Use"], `${choosen_item.name} : ${choosen_item.Description}\n ${choosen_item.count} left.`, {
+      cancel: "Choose another attack",
+    });
+    switch (answers) {
+      case -1:
+        check_inventory(unit, fight_list, tower);
+        return undefined;
+  
+      case 0 :
+        const target = Choosetarget(unit, fight_list,hero_list, tower);
+        if(target){
+          let message = `${unit.name} used a ${choosen_item.name}`
+          if(target.name === unit.name){
+            message += ' on himself';
+          } else {
+            message += ` on ${target.name}`;
+          }
+          combat_log.push(message);
+          item_effect(choosen_item,target) ;
+          inventory.Use(choosen_item);
+        }
+      break;
+   }
+  }
 }

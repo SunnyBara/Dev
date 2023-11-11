@@ -7,7 +7,7 @@ var player_action_1 = require("./player_action");
 var Check_fighters_1 = require("./Check_fighters");
 var initialisation_tower_1 = require("../initialisation/initialisation_tower");
 var display_damages_1 = require("../Display/display_damages");
-var End_of_fight_1 = require("./End_of_fight");
+var End_of_fight_1 = require("../game/End_of_fight");
 var Death_management_1 = require("./Death_management");
 function Action(initiative, fight_list, tower) {
     for (var _i = 0, initiative_1 = initiative; _i < initiative_1.length; _i++) {

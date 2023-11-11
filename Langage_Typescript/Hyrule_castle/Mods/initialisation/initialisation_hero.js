@@ -12,6 +12,15 @@ exports.hero_list = [];
 function Create_hero(hero_name) {
     var herostats = (0, search_functions_1.Search_in_Hero_list)(hero_name);
     var newhero = (0, initialisation_units_1.Create_unit)(herostats);
+    var exp = {
+        current: 0,
+        max: 30
+    };
+    var level = {
+        current_level: 1,
+        exp: exp
+    };
+    newhero.state.level = level;
     return newhero;
 }
 exports.Create_hero = Create_hero;

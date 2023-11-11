@@ -2,7 +2,7 @@ import { Search_in_Hero_list } from "../Search/search_functions";
 import { findIfModIsActive } from "../Start/Set_mods";
 import { Inventory } from "../data/Iventory";
 import { Rarity_list, Tower_rules } from "../data/Tower";
-import { Units } from "../data/Unit";
+import { Bar, Level, Units } from "../data/Unit";
 import { heros_list } from "../data/importdata";
 import { Random_hero } from "../data/random";
 import { Set_up_rarity_units } from "./Initialisation_rarity";
@@ -13,6 +13,15 @@ export const hero_list: Units[] = [];
 export function Create_hero(hero_name: string): Units {
   let herostats = Search_in_Hero_list(hero_name);
   let newhero: Units = Create_unit(herostats);
+  let exp : Bar = {
+    current : 0,
+    max :30
+  } 
+  let level : Level =  { 
+    current_level : 1,
+    exp : exp
+  }
+  newhero.state.level = level;
   return newhero;
 }
 
