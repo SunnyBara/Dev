@@ -47,6 +47,6 @@ create table if not exists Private_Message (
 	FOREIGN KEY (Id_Receiver) REFERENCES User(Id)
 );
 
-insert into user (User_name,User_password) VALUES ('michel','letest');
-insert into user (User_name,User_password) Values ('jean','letest');
+insert into User (User_name,User_password) VALUES ('michel','letest');
+insert into User (User_name,User_password) Values ('jean','letest');
 insert into Room (Room_Name,Nb_User_max,Nb_User_current,Id_User_Admin) values ('totoroom',4,1,1);
