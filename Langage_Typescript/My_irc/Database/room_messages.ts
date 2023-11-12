@@ -1,7 +1,7 @@
 import { Message } from '../src/data/Message';
-import { Room } from '../src/data/Room';
+import Room from '../src/data/Room';
 import { User } from '../src/data/User';
-import { openDb } from './connection';
+import openDb from './connection';
 import { RegexDate } from './date';
 import { getInfoRoom } from './room';
 import { getUserInfo } from './user_table';

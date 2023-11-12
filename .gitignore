@@ -1,2 +1,5 @@
 *.o
 *.out
+*.js
+*.json
+node_modules
