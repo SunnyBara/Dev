@@ -3,8 +3,8 @@ import Room from "./Room";
 export class User {
   private login: string;
   private password: string;
-  private rooms: Room[];
-  private friendList: User[];
+  public  rooms: Room[];
+  public  friendList: User[];
   private user_Id: number;
   constructor(login: string, password: string) {
     this.login = login;

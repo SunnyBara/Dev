@@ -44,7 +44,8 @@ create table if not exists Private_Message (
 	Date_Send DATETIME NOT NULL default Now() ,
 	PRIMARY key (Id), 
 	FOREIGN KEY (Id_Sender) REFERENCES User(Id),
-	FOREIGN KEY (Id_Receiver) REFERENCES User(Id)
+	FOREIGN KEY (Id_Receiver) 
+	REFERENCES User(Id)
 );
 
 insert into User (User_name,User_password) VALUES ('michel','letest');
