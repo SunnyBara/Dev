@@ -5,7 +5,7 @@ import { Display } from "../Display/display";
 import { hero_list, inventory } from "../initialisation/initialisation_hero";
 import { rl } from "../data/importdata";
 import { Tower } from "../data/Tower";
-import { Attack } from "./damage_modifiers";
+import { Attack } from "./Damage_modifiers";
 import { combat_log } from "../initialisation/initialisation_tower";
 import { Item } from "../data/Iventory";
 
@@ -50,7 +50,6 @@ function Letsfight(unit: Units, fight_list: Units[], tower: Tower) {
       if (target_to_attack !== undefined) {
         Damages_output(unit, target_to_attack, Attack(unit,target_to_attack), fight_list);
       }
-
       break;
     case 1:
       chooseskill(unit, fight_list, tower);
