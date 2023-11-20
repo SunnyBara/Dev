@@ -1,0 +1,1 @@
+document.getElementById('heure').innerHTML = "test";
