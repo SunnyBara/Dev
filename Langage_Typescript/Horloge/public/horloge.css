@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(50, 50, 241);
+}
+
+.heure {
+    display: flex;
+    margin-top: 15%;
+    margin-left: 45%;
+    justify-content: center;
+    border: solid;
+    width: 15%;
+    color: rgb(237, 252, 30);
+}
