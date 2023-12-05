@@ -1,0 +1,22 @@
+header {
+    background-color: #f9f5e5;
+    align-items: center;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ .container {
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+} 
+
+
+.container h1 {
+    color: white;
+    text-align: center;
+}
+

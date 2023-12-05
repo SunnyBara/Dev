@@ -1,0 +1,9 @@
+header {
+    background-color: #fbf5da;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #54a6b1;
+    width: 100%; /* Ensure the header spans the full width */
+}
