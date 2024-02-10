@@ -196,10 +196,11 @@ class Message extends Models {
 }
 
 async function main() {
+  const users = Models.all();
   const user1 = new User();
   user1.user_login = "michel";
   user1.user_email = "michel@gmail.com";
-  //  user1.save();
+  user1.save();
   const user2 = await User.find(1);
   user2.user_email = "michel@gmail.com";
   user2.save();
