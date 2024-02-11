@@ -3,15 +3,17 @@
 
 int main(int argc, char **argv)
 {
-  s_btree *abr;
-  s_btree *adr;
-  abr = b_node_create(5);
-  b_node_add(abr, 4);
-  b_node_add(abr, 3);
-  adr = b_node_find(abr, 3);
-  printf("prev %i : %i\n", adr->elt, adr->prev->elt);
-  b_prefixe(abr);
-  b_node_delete(abr,5);
-  b_prefixe(abr);
+  s_btree *tree = b_node_create(7);
+  tree = b_node_add(tree, 3);
+  tree = b_node_add(tree, 10);
+  tree = b_node_add(tree, 1);
+  tree = b_node_add(tree, 6);
+  tree = b_node_add(tree, 4);
+  tree = b_node_add(tree, 7);
+  tree = b_node_add(tree, 14);
+  tree = b_node_add(tree, 13);
+  b_prefixe(tree);
+  printf("suppression d'une node dans l'abre %d\n", b_node_delete(tree, 3));
+  printf("nouvelle root %d\n", tree->elt);
   return (0);
 }

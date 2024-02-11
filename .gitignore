@@ -3,3 +3,4 @@
 *.js
 *.json
 node_modules
+prog.out.dSYM

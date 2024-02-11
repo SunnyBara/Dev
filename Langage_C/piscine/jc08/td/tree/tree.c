@@ -164,12 +164,13 @@ s_btree *deletedroit(s_btree *addresse)
             addresse = addresse->left;
         }
     }
-    return(addresse);
+    return (addresse);
 }
 int b_node_delete(s_btree *tree, int elt)
 {
     s_btree *addresse;
     addresse = recurfind(tree, addresse, elt);
     tree = deletedroit(addresse);
+    b_prefixe(tree);
     return (0);
 }

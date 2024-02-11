@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+    color:white;
+}
+
+header{
+    display : flex;
+    flex-direction: row;
+}
+.score  {
+    margin-left: 25%;
+}
+
+.lives {
+    margin-left: 45%;
+    display: flex;
+    align-items: center;
+}
+
+.scorevalue{
+    color:rgb(102, 255, 0);
+}
+
+.livesvalue{
+    color:rgb(102, 255, 0);
+}
+.vaisseaux{
+    position: fixed; 
+    bottom:10%;
+    left: 50%;
+    opacity: 1;
+}
