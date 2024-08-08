@@ -1,0 +1,16 @@
+{% extends 'listings/base.html' %}
+{% block content %}
+    <h2>{{list.title}}</h2>
+    <p>{{list.description}}</p>
+    <p>{{list.sold|yesno}}</p>
+    <p>{{list.year}}</p>
+    <p>{{list.get_type_display}}</p>
+    <p> <a href = "{% url 'list-update' list.id %}"> modifier la list</a></p>
+    <p> <a href = "{% url 'list-delete' list.id %}"> supprimer la list</a></p>
+    {% if list.Band.name %}
+    <p> <a href="{% url 'band-detail' list.band.id %}">{{list.Band.name}}</a></p>
+    {% endif %}
+    <p> <a href="{% url 'listing' %}">Back to list</a></p>
+{% endblock %}
+
+

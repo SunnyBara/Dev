@@ -1,0 +1,10 @@
+{% extends 'listings/base.html'%}
+{% block content %}
+    <h1>Contact</h1>
+    Pour nous contacter remplissez le formumlaire ci dessous
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value = "Envoyer">
+    </form>
+{% endblock %}
