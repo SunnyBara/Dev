@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
     t_cell map[SIZE_X][SIZE_Y];
     load(map);
-    //system("clear");
+    system("clear");
     print(map);
     sleep(3);
     while (1)

@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 
 etage=$1
 j=0
